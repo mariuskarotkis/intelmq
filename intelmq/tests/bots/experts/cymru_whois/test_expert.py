@@ -64,6 +64,8 @@ OVERWRITE_OUT = {"__type": "Event",
                   "source.as_name": "EDGECAST, US",
                   "time.observation": "2015-01-01T00:00:00+00:00",
                   }
+EXAMPLE_NXDOMAIN = EXAMPLE_INPUT.copy()
+EXAMPLE_NXDOMAIN['source.ip'] = '103.107.188.0'
 
 
 @test.skip_redis()
@@ -113,6 +115,15 @@ class TestCymruExpertBot(test.BotTestCase, unittest.TestCase):
         self.input_message["source.registry"] = "LACNIC"
         self.run_bot(parameters={'overwrite' : False})
         self.assertMessageEqual(0, OVERWRITE_OUT)
+
+    def test_nxdomain(self):
+        """
+        TXT query on 0.188.107.103.origin.asn.cymru.com gives error NXDOMAIN
+        https://github.com/certtools/intelmq/issues/1711
+        """
+        self.input_message = EXAMPLE_NXDOMAIN
+        self.run_bot()
+        self.assertMessageEqual(0, EXAMPLE_NXDOMAIN)
 
 
 if __name__ == '__main__':  # pragma: no cover
