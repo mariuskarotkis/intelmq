@@ -84,6 +84,7 @@ Update allowed classification fields to 2020-01-28 version (#1409, #1476). Old n
   - Nested if statements, plus mixed actions and actions in the same scope (PR #1923 by Mikk Margus Möll).
   - The attribute manipulation actions add, add! and update support non-string (bool/int/float) values (PR #1923 by Mikk Margus Möll).
 - Added `intelmq.bots.experts.uwhoisd`: A bot that fetches the whois entry from a uwhois-instance (PR#1918 by Raphaël Vinot).
+- Added `intelmq.bots.experts.aggregate`: A bot that aggregate events based upon given fields & a timespan. (PR#1959 by Sebastian Waldbauer)
 
 #### Outputs
 - Remove `intelmq.bots.outputs.xmpp`: one of the dependencies of the bot was deprecated and according to a short survey on the IntelMQ

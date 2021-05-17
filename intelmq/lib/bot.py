@@ -199,6 +199,7 @@ class Bot(object):
             self.__load_harmonization_configuration()
 
             self._parse_common_parameters()
+            super().__init__()
             self.init()
 
             if not self.__instance_id:
@@ -224,7 +225,6 @@ class Bot(object):
             self.stop()
             raise
         self.logger.info("Bot initialization completed.")
-        super().__init__()
 
         self.__stats_cache = cache.Cache(host=self.statistics_host,
                                          port=self.statistics_port,
